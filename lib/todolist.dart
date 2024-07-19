@@ -23,7 +23,7 @@ class _ToDoListState extends State<ToDoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: Color.fromARGB(255, 57, 1, 1),
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
