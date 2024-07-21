@@ -5,6 +5,8 @@ import 'addpage.dart';
 import 'editpage.dart';
 
 class ToDoList extends StatefulWidget {
+  const ToDoList({super.key});
+
   @override
   _ToDoListState createState() => _ToDoListState();
 }
@@ -18,6 +20,12 @@ class _ToDoListState extends State<ToDoList> {
     });
   }
 
+  void _editNote(int index, TodoData updatedNote) {
+    setState(() {
+      notes[index] = updatedNote;
+    });
+  }
+
   void _deleteNote(int index) {
     setState(() {
       notes.removeAt(index);
@@ -27,16 +35,16 @@ class _ToDoListState extends State<ToDoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xffffffff),
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color(0xffffffff),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        title: Text(
+        title: const Text(
           "Notes",
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -53,18 +61,18 @@ class _ToDoListState extends State<ToDoList> {
           alignment: Alignment.topLeft,
           children: [
             ListView.builder(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               itemCount: notes.length,
               itemBuilder: (context, index) {
                 final note = notes[index];
                 return Container(
-                  margin: EdgeInsets.symmetric(vertical: 4),
-                  padding: EdgeInsets.all(16),
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(4.0),
-                    border: Border.all(color: Color(0x859d9b9b), width: 1),
+                    border: Border.all(color: const Color(0x859d9b9b), width: 1),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +84,7 @@ class _ToDoListState extends State<ToDoList> {
                         textAlign: TextAlign.start,
                         maxLines: 2,
                         overflow: TextOverflow.clip,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontStyle: FontStyle.normal,
                           fontSize: 14,
@@ -84,13 +92,13 @@ class _ToDoListState extends State<ToDoList> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                         child: Text(
                           note.content,
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           overflow: TextOverflow.clip,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                             fontSize: 14,
@@ -99,7 +107,7 @@ class _ToDoListState extends State<ToDoList> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -108,7 +116,7 @@ class _ToDoListState extends State<ToDoList> {
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.clip,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 12,
@@ -118,7 +126,7 @@ class _ToDoListState extends State<ToDoList> {
                             Row(
                               children: [
                                 IconButton(
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.edit,
                                     color: Color(0xff212435),
                                   ),
@@ -128,13 +136,15 @@ class _ToDoListState extends State<ToDoList> {
                                       MaterialPageRoute(
                                         builder: (context) => Editpage(
                                           todo: note,
+                                          index: index,
+                                          editNote: _editNote,
                                         ),
                                       ),
                                     );
                                   },
                                 ),
                                 IconButton(
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.delete,
                                     color: Color(0xff212435),
                                   ),
@@ -166,11 +176,11 @@ class _ToDoListState extends State<ToDoList> {
             ),
           );
         },
-        child: Icon(
+        backgroundColor: const Color(0xff0a0a0a),
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Color(0xff0a0a0a),
       ),
     );
   }

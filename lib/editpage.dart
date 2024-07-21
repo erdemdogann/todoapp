@@ -1,24 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/tododata.dart';
 
-class Editpage extends StatelessWidget {
-
+class Editpage extends StatefulWidget {
   final TodoData todo;
-  const Editpage({super.key, required this.todo});
+  final int index;
+  final Function(int, TodoData) editNote;
+
+  const Editpage({super.key, required this.todo, required this.index, required this.editNote});
+
+  @override
+  _EditpageState createState() => _EditpageState();
+}
+
+class _EditpageState extends State<Editpage> {
+  late TextEditingController _titleController;
+  late TextEditingController _contentController;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(text: widget.todo.title);
+    _contentController = TextEditingController(text: widget.todo.content);
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
         elevation: 0,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xffffffff),
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color(0xffffffff),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        title: Text(
+        title: const Text(
           "Edit Note",
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -27,17 +51,18 @@ class Editpage extends StatelessWidget {
             color: Color(0xff000000),
           ),
         ),
-        leading: Icon(
-          Icons.arrow_back,
-          color: Color(0xff212435),
-          size: 24,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Color(0xff212435), size: 24),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        actions: [
+        actions: const [
           Icon(Icons.list, color: Color(0xff212435), size: 24),
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -45,19 +70,17 @@ class Editpage extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               TextField(
-                controller: TextEditingController(
-                  text:  todo.title,
-                ),
+                controller: _titleController,
                 obscureText: false,
                 textAlign: TextAlign.start,
                 maxLines: 1,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.normal,
                   fontSize: 18,
                   color: Color(0xff000000),
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -74,19 +97,17 @@ class Editpage extends StatelessWidget {
                 ),
               ),
               TextField(
-                controller: TextEditingController(
-                  text: todo.content,
-                ),
+                controller: _contentController,
                 obscureText: false,
                 textAlign: TextAlign.start,
                 maxLines: 20,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
                   fontSize: 14,
                   color: Color(0xff000000),
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -104,25 +125,29 @@ class Editpage extends StatelessWidget {
                 ),
               ),
               MaterialButton(
-                onPressed: () {},
-                color: Color(0xffffffff),
+                onPressed: () {
+                  final updatedTodo = TodoData(_titleController.text, _contentController.text, widget.todo.time);
+                  widget.editNote(widget.index, updatedTodo);
+                  Navigator.pop(context);
+                },
+                color: const Color(0xffffffff),
                 elevation: 0,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.zero,
                   side: BorderSide(color: Color(0xff808080), width: 1),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Text(
-                  "Ekle",
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                textColor: const Color(0xff000000),
+                height: 40,
+                minWidth: 140,
+                child: const Text(
+                  "Save",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   ),
                 ),
-                textColor: Color(0xff000000),
-                height: 40,
-                minWidth: 140,
               ),
             ],
           ),
