@@ -22,7 +22,7 @@ class Addpage extends StatelessWidget {
           borderRadius: BorderRadius.zero,
         ),
         title: const Text(
-          "Add Note",
+          "Not Ekle",
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,
@@ -64,7 +64,7 @@ class Addpage extends StatelessWidget {
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
-                  hintText: "Title",
+                  hintText: "Başlık",
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
@@ -92,7 +92,7 @@ class Addpage extends StatelessWidget {
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
-                  hintText: "Writes Notes",
+                  hintText: "Notu yazın",
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
@@ -102,14 +102,16 @@ class Addpage extends StatelessWidget {
                   filled: true,
                   fillColor: Color(0xffffffff),
                   isDense: false,
-                  contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 ),
               ),
               MaterialButton(
                 onPressed: () {
                   final title = titleController.text;
                   final content = contentController.text;
-                  final time = DateTime.now().toString(); // or use any format you prefer
+                  final time =
+                      DateTime.now().toString(); // or use any format you prefer
                   final newNote = TodoData(title, content, time);
                   addNote(newNote);
                   Navigator.pop(context);
@@ -120,12 +122,13 @@ class Addpage extends StatelessWidget {
                   borderRadius: BorderRadius.zero,
                   side: BorderSide(color: Color(0xff808080), width: 1),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 textColor: const Color(0xff000000),
                 height: 40,
                 minWidth: 140,
                 child: const Text(
-                  "Add",
+                  "Ekle",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,

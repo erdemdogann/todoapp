@@ -6,7 +6,11 @@ class Editpage extends StatefulWidget {
   final int index;
   final Function(int, TodoData) editNote;
 
-  const Editpage({super.key, required this.todo, required this.index, required this.editNote});
+  const Editpage(
+      {super.key,
+      required this.todo,
+      required this.index,
+      required this.editNote});
 
   @override
   _EditpageState createState() => _EditpageState();
@@ -43,7 +47,7 @@ class _EditpageState extends State<Editpage> {
           borderRadius: BorderRadius.zero,
         ),
         title: const Text(
-          "Edit Note",
+          "Not Düzenle",
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,
@@ -52,7 +56,8 @@ class _EditpageState extends State<Editpage> {
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xff212435), size: 24),
+          icon:
+              const Icon(Icons.arrow_back, color: Color(0xff212435), size: 24),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -118,16 +123,13 @@ class _EditpageState extends State<Editpage> {
                   fillColor: Color(0xffffffff),
                   isDense: false,
                   contentPadding:
-                  EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 ),
               ),
               MaterialButton(
                 onPressed: () {
-                  final updatedTodo = TodoData(
-                      _titleController.text,
-                      _contentController.text,
-                      widget.todo.time
-                  );
+                  final updatedTodo = TodoData(_titleController.text,
+                      _contentController.text, widget.todo.time);
                   widget.editNote(widget.index, updatedTodo);
                   Navigator.pop(context);
                 },
@@ -137,12 +139,13 @@ class _EditpageState extends State<Editpage> {
                   borderRadius: BorderRadius.zero,
                   side: BorderSide(color: Color(0xff808080), width: 1),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 textColor: const Color(0xff000000),
                 height: 40,
                 minWidth: 140,
                 child: const Text(
-                  "Edit",
+                  "Kaydet",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
