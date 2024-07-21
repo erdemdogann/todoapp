@@ -123,7 +123,11 @@ class _EditpageState extends State<Editpage> {
               ),
               MaterialButton(
                 onPressed: () {
-                  final updatedTodo = TodoData(_titleController.text, _contentController.text, widget.todo.time);
+                  final updatedTodo = TodoData(
+                      _titleController.text,
+                      _contentController.text,
+                      widget.todo.time
+                  );
                   widget.editNote(widget.index, updatedTodo);
                   Navigator.pop(context);
                 },
