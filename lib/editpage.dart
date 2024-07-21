@@ -57,9 +57,6 @@ class _EditpageState extends State<Editpage> {
             Navigator.pop(context);
           },
         ),
-        actions: const [
-          Icon(Icons.list, color: Color(0xff212435), size: 24),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -141,7 +138,7 @@ class _EditpageState extends State<Editpage> {
                 height: 40,
                 minWidth: 140,
                 child: const Text(
-                  "Save",
+                  "Edit",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,

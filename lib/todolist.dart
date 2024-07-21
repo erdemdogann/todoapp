@@ -1,4 +1,3 @@
-// ToDoList Page
 import 'package:flutter/material.dart';
 import 'package:todoapp/tododata.dart';
 import 'addpage.dart';
@@ -45,7 +44,7 @@ class _ToDoListState extends State<ToDoList> {
           borderRadius: BorderRadius.zero,
         ),
         title: const Text(
-          "Notes",
+          "To Do List",
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,

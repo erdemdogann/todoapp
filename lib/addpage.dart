@@ -1,4 +1,3 @@
-// Addpage
 import 'package:flutter/material.dart';
 import 'package:todoapp/tododata.dart';
 
@@ -41,9 +40,6 @@ class Addpage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        actions: const [
-          Icon(Icons.list, color: Color(0xff212435), size: 24),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -96,7 +92,7 @@ class Addpage extends StatelessWidget {
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
-                  hintText: "Writes Notes here",
+                  hintText: "Writes Notes",
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
@@ -129,7 +125,7 @@ class Addpage extends StatelessWidget {
                 height: 40,
                 minWidth: 140,
                 child: const Text(
-                  "Ekle",
+                  "Add",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
