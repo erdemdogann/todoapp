@@ -1,6 +1,15 @@
+// Addpage
 import 'package:flutter/material.dart';
+import 'package:todoapp/tododata.dart';
 
 class Addpage extends StatelessWidget {
+  final Function(TodoData) addNote;
+
+  Addpage({required this.addNote});
+
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +31,15 @@ class Addpage extends StatelessWidget {
             color: Color(0xff000000),
           ),
         ),
-        leading: Icon(
-          Icons.arrow_back,
-          color: Color(0xff212435),
-          size: 24,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Color(0xff212435),
+            size: 24,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         actions: [
           Icon(Icons.list, color: Color(0xff212435), size: 24),
@@ -40,7 +54,7 @@ class Addpage extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               TextField(
-                controller: TextEditingController(),
+                controller: titleController,
                 obscureText: false,
                 textAlign: TextAlign.start,
                 maxLines: 1,
@@ -68,7 +82,7 @@ class Addpage extends StatelessWidget {
                 ),
               ),
               TextField(
-                controller: TextEditingController(),
+                controller: contentController,
                 obscureText: false,
                 textAlign: TextAlign.start,
                 maxLines: 20,
@@ -92,12 +106,18 @@ class Addpage extends StatelessWidget {
                   filled: true,
                   fillColor: Color(0xffffffff),
                   isDense: false,
-                  contentPadding:
-                  EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 ),
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  final title = titleController.text;
+                  final content = contentController.text;
+                  final time = DateTime.now().toString(); // or use any format you prefer
+                  final newNote = TodoData(title, content, time);
+                  addNote(newNote);
+                  Navigator.pop(context);
+                },
                 color: Color(0xffffffff),
                 elevation: 0,
                 shape: RoundedRectangleBorder(

@@ -1,3 +1,4 @@
+// ToDoList Page
 import 'package:flutter/material.dart';
 import 'package:todoapp/tododata.dart';
 import 'addpage.dart';
@@ -9,10 +10,13 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  List<TodoData> notes = [
-    TodoData('Note1', 'hi.how r you?', '3 hour ago'),
-    TodoData('Note2', 'hi..i have create a sample note', '3 hour ago'),
-  ];
+  List<TodoData> notes = [];
+
+  void _addNote(TodoData note) {
+    setState(() {
+      notes.add(note);
+    });
+  }
 
   void _deleteNote(int index) {
     setState(() {
@@ -23,7 +27,7 @@ class _ToDoListState extends State<ToDoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 57, 1, 1),
+      backgroundColor: Color(0xffffffff),
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
@@ -68,7 +72,7 @@ class _ToDoListState extends State<ToDoList> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        note.title!,
+                        note.title,
                         textAlign: TextAlign.start,
                         maxLines: 2,
                         overflow: TextOverflow.clip,
@@ -82,7 +86,7 @@ class _ToDoListState extends State<ToDoList> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                         child: Text(
-                          note.content!,
+                          note.content,
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           overflow: TextOverflow.clip,
@@ -100,7 +104,7 @@ class _ToDoListState extends State<ToDoList> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              note.time!,
+                              note.time,
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.clip,
@@ -155,7 +159,11 @@ class _ToDoListState extends State<ToDoList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Addpage()),
+            MaterialPageRoute(
+              builder: (context) => Addpage(
+                addNote: _addNote,
+              ),
+            ),
           );
         },
         child: Icon(
