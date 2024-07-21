@@ -21,6 +21,7 @@ class _EditpageState extends State<Editpage> {
   late TextEditingController _contentController;
 
   String? _titleError;
+  String? _contentError;
 
   @override
   void initState() {
@@ -40,14 +41,12 @@ class _EditpageState extends State<Editpage> {
     final title = _titleController.text;
     final content = _contentController.text;
 
-    if (title.isEmpty) {
-      setState(() {
-        _titleError = 'Başlık gerekli';
-      });
-    } else {
-      setState(() {
-        _titleError = null;
-      });
+    setState(() {
+      _titleError = title.isEmpty ? 'Başlık gerekli' : null;
+      _contentError = content.isEmpty ? 'Açıklama gerekli' : null;
+    });
+
+    if (_titleError == null && _contentError == null) {
       final updatedTodo = TodoData(title, content, widget.todo.time);
       widget.editNote(widget.index, updatedTodo);
       Navigator.pop(context);
@@ -131,7 +130,7 @@ class _EditpageState extends State<Editpage> {
                   fontSize: 14,
                   color: Color(0xff000000),
                 ),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -139,13 +138,14 @@ class _EditpageState extends State<Editpage> {
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: 12,
-                    color: Color(0xff000000),
+                    color: _contentError == null ? Color(0xff000000) : Colors.red,
                   ),
                   filled: true,
                   fillColor: Color(0xffffffff),
                   isDense: false,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  errorText: _contentError,
                 ),
               ),
               MaterialButton(

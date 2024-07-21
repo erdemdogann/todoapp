@@ -4,7 +4,7 @@ import 'package:todoapp/tododata.dart';
 class TextChangeScreen extends StatefulWidget {
   final Function(TodoData) addNote;
 
-  TextChangeScreen({required this.addNote});
+  const TextChangeScreen({super.key, required this.addNote});
 
   @override
   _AddPageState createState() => _AddPageState();
@@ -15,19 +15,18 @@ class _AddPageState extends State<TextChangeScreen> {
   final TextEditingController contentController = TextEditingController();
 
   String? _titleError;
+  String? _contentError;
 
   void _addNote() {
     final title = titleController.text;
     final content = contentController.text;
 
-    if (title.isEmpty) {
-      setState(() {
-        _titleError = 'Başlık gerekli';
-      });
-    } else {
-      setState(() {
-        _titleError = null;
-      });
+    setState(() {
+      _titleError = title.isEmpty ? 'Başlık gerekli' : null;
+      _contentError = content.isEmpty ? 'Açıklama gerekli' : null;
+    });
+
+    if (_titleError == null && _contentError == null) {
       final time = DateTime.now().toString();
       final newNote = TodoData(title, content, time);
       widget.addNote(newNote);
@@ -115,7 +114,7 @@ class _AddPageState extends State<TextChangeScreen> {
                   fontSize: 14,
                   color: Color(0xff000000),
                 ),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -124,13 +123,14 @@ class _AddPageState extends State<TextChangeScreen> {
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: 12,
-                    color: Color(0xff000000),
+                    color: _contentError == null ? Color(0xff000000) : Colors.red,
                   ),
                   filled: true,
                   fillColor: Color(0xffffffff),
                   isDense: false,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  errorText: _contentError,
                 ),
               ),
               MaterialButton(
