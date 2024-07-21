@@ -20,6 +20,8 @@ class _EditpageState extends State<Editpage> {
   late TextEditingController _titleController;
   late TextEditingController _contentController;
 
+  String? _titleError;
+
   @override
   void initState() {
     super.initState();
@@ -32,6 +34,24 @@ class _EditpageState extends State<Editpage> {
     _titleController.dispose();
     _contentController.dispose();
     super.dispose();
+  }
+
+  void _saveNote() {
+    final title = _titleController.text;
+    final content = _contentController.text;
+
+    if (title.isEmpty) {
+      setState(() {
+        _titleError = 'Başlık gerekli';
+      });
+    } else {
+      setState(() {
+        _titleError = null;
+      });
+      final updatedTodo = TodoData(title, content, widget.todo.time);
+      widget.editNote(widget.index, updatedTodo);
+      Navigator.pop(context);
+    }
   }
 
   @override
@@ -82,20 +102,22 @@ class _EditpageState extends State<Editpage> {
                   fontSize: 18,
                   color: Color(0xff000000),
                 ),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
+                  hintText: "Başlık",
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
                     fontSize: 16,
-                    color: Color(0xff000000),
+                    color: _titleError == null ? Color(0xff000000) : Colors.red,
                   ),
                   filled: true,
                   fillColor: Color(0xffffffff),
                   isDense: false,
                   contentPadding: EdgeInsets.all(8),
+                  errorText: _titleError,
                 ),
               ),
               TextField(
@@ -127,12 +149,7 @@ class _EditpageState extends State<Editpage> {
                 ),
               ),
               MaterialButton(
-                onPressed: () {
-                  final updatedTodo = TodoData(_titleController.text,
-                      _contentController.text, widget.todo.time);
-                  widget.editNote(widget.index, updatedTodo);
-                  Navigator.pop(context);
-                },
+                onPressed: _saveNote,
                 color: const Color(0xffffffff),
                 elevation: 0,
                 shape: const RoundedRectangleBorder(

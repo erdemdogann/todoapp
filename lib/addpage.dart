@@ -1,13 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/tododata.dart';
 
-class Addpage extends StatelessWidget {
+class TextChangeScreen extends StatefulWidget {
   final Function(TodoData) addNote;
 
-  Addpage({required this.addNote});
+  TextChangeScreen({required this.addNote});
 
+  @override
+  _AddPageState createState() => _AddPageState();
+}
+
+class _AddPageState extends State<TextChangeScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+
+  String? _titleError;
+
+  void _addNote() {
+    final title = titleController.text;
+    final content = contentController.text;
+
+    if (title.isEmpty) {
+      setState(() {
+        _titleError = 'Başlık gerekli';
+      });
+    } else {
+      setState(() {
+        _titleError = null;
+      });
+      final time = DateTime.now().toString();
+      final newNote = TodoData(title, content, time);
+      widget.addNote(newNote);
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +86,7 @@ class Addpage extends StatelessWidget {
                   fontSize: 18,
                   color: Color(0xff000000),
                 ),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   disabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -69,12 +95,13 @@ class Addpage extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
                     fontSize: 16,
-                    color: Color(0xff000000),
+                    color: _titleError == null ? Color(0xff000000) : Colors.red,
                   ),
                   filled: true,
                   fillColor: Color(0xffffffff),
                   isDense: false,
                   contentPadding: EdgeInsets.all(8),
+                  errorText: _titleError,
                 ),
               ),
               TextField(
@@ -107,15 +134,7 @@ class Addpage extends StatelessWidget {
                 ),
               ),
               MaterialButton(
-                onPressed: () {
-                  final title = titleController.text;
-                  final content = contentController.text;
-                  final time =
-                      DateTime.now().toString(); // or use any format you prefer
-                  final newNote = TodoData(title, content, time);
-                  addNote(newNote);
-                  Navigator.pop(context);
-                },
+                onPressed: _addNote,
                 color: const Color(0xffffffff),
                 elevation: 0,
                 shape: const RoundedRectangleBorder(

@@ -180,7 +180,7 @@ class _ToDoListState extends State<ToDoList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Addpage(
+              builder: (context) => TextChangeScreen(
                 addNote: _addNote,
               ),
             ),
