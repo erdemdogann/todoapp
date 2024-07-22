@@ -107,7 +107,7 @@ class _AddPageState extends State<TextChangeScreen> {
                 controller: contentController,
                 obscureText: false,
                 textAlign: TextAlign.start,
-                maxLines: 20,
+                maxLines: null,
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
@@ -123,7 +123,8 @@ class _AddPageState extends State<TextChangeScreen> {
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: 12,
-                    color: _contentError == null ? Color(0xff000000) : Colors.red,
+                    color:
+                        _contentError == null ? Color(0xff000000) : Colors.red,
                   ),
                   filled: true,
                   fillColor: Color(0xffffffff),
