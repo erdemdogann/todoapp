@@ -34,12 +34,12 @@ class _ToDoListState extends State<ToDoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffffffff),
+      backgroundColor: const Color(0xffF0F0F0),
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xffffffff),
+        backgroundColor: const Color(0xff6200EE),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
@@ -48,8 +48,8 @@ class _ToDoListState extends State<ToDoList> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,
-            fontSize: 16,
-            color: Color(0xff000000),
+            fontSize: 20,
+            color: Colors.white,
           ),
         ),
       ),
@@ -59,7 +59,10 @@ class _ToDoListState extends State<ToDoList> {
               child: Center(
                 child: Text(
                   'Yeni bir kayıt eklemek için + butonuna tıklayın.',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff6200EE)),
                 ),
               ))
           : SizedBox(
@@ -74,14 +77,20 @@ class _ToDoListState extends State<ToDoList> {
                     itemBuilder: (context, index) {
                       final note = notes[index];
                       return Container(
-                        margin: const EdgeInsets.symmetric(vertical: 4),
+                        margin: const EdgeInsets.symmetric(vertical: 8),
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
+                          color: Colors.white,
                           shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(4.0),
-                          border: Border.all(
-                              color: const Color(0x859d9b9b), width: 1),
+                          borderRadius: BorderRadius.circular(8.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -92,12 +101,12 @@ class _ToDoListState extends State<ToDoList> {
                               note.title,
                               textAlign: TextAlign.start,
                               maxLines: 2,
-                              overflow: TextOverflow.clip,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,
-                                fontSize: 14,
-                                color: Color(0xff000000),
+                                fontSize: 16,
+                                color: Color(0xff212121),
                               ),
                             ),
                             Padding(
@@ -106,12 +115,12 @@ class _ToDoListState extends State<ToDoList> {
                                 note.content,
                                 textAlign: TextAlign.start,
                                 maxLines: 2,
-                                overflow: TextOverflow.clip,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 14,
-                                  color: Color(0xff000000),
+                                  color: Color(0xff757575),
                                 ),
                               ),
                             ),
@@ -125,12 +134,12 @@ class _ToDoListState extends State<ToDoList> {
                                     note.time,
                                     textAlign: TextAlign.start,
                                     maxLines: 1,
-                                    overflow: TextOverflow.clip,
+                                    overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
                                       fontSize: 12,
-                                      color: Color(0xff696868),
+                                      color: Color(0xff9E9E9E),
                                     ),
                                   ),
                                   Row(
@@ -138,7 +147,7 @@ class _ToDoListState extends State<ToDoList> {
                                       IconButton(
                                         icon: const Icon(
                                           Icons.edit,
-                                          color: Color(0xff212435),
+                                          color: Color(0xff6200EE),
                                         ),
                                         onPressed: () {
                                           Navigator.push(
@@ -156,7 +165,7 @@ class _ToDoListState extends State<ToDoList> {
                                       IconButton(
                                         icon: const Icon(
                                           Icons.delete,
-                                          color: Color(0xff212435),
+                                          color: Color(0xffE53935),
                                         ),
                                         onPressed: () {
                                           _deleteNote(index);
@@ -186,7 +195,7 @@ class _ToDoListState extends State<ToDoList> {
             ),
           );
         },
-        backgroundColor: const Color(0xff0a0a0a),
+        backgroundColor: const Color(0xff6200EE),
         child: const Icon(
           Icons.add,
           color: Colors.white,

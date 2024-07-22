@@ -37,28 +37,25 @@ class _AddPageState extends State<TextChangeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffffffff),
+      backgroundColor: const Color(0xffF0F0F0),
       appBar: AppBar(
-        elevation: 0,
-        centerTitle: false,
+        elevation: 4,
+        centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xffffffff),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-        ),
+        backgroundColor: const Color(0xff6200EE),
         title: const Text(
           "Not Ekle",
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,
-            fontSize: 16,
-            color: Color(0xff000000),
+            fontSize: 20,
+            color: Colors.white,
           ),
         ),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Color(0xff212435),
+            color: Colors.white,
             size: 24,
           ),
           onPressed: () {
@@ -86,23 +83,24 @@ class _AddPageState extends State<TextChangeScreen> {
                   color: Color(0xff000000),
                 ),
                 decoration: InputDecoration(
-                  disabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
                   hintText: "Başlık",
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
                     fontSize: 16,
-                    color: _titleError == null ? Color(0xff000000) : Colors.red,
+                    color: _titleError == null ? Color(0xff9E9E9E) : Colors.red,
                   ),
                   filled: true,
-                  fillColor: Color(0xffffffff),
+                  fillColor: Colors.white,
                   isDense: false,
-                  contentPadding: EdgeInsets.all(8),
+                  contentPadding: const EdgeInsets.all(8),
                   errorText: _titleError,
                 ),
               ),
+              const SizedBox(height: 16),
               TextField(
                 controller: contentController,
                 obscureText: false,
@@ -115,42 +113,43 @@ class _AddPageState extends State<TextChangeScreen> {
                   color: Color(0xff000000),
                 ),
                 decoration: InputDecoration(
-                  disabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
                   hintText: "Notu yazın",
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: 12,
                     color:
-                        _contentError == null ? Color(0xff000000) : Colors.red,
+                        _contentError == null ? Color(0xff9E9E9E) : Colors.red,
                   ),
                   filled: true,
-                  fillColor: Color(0xffffffff),
+                  fillColor: Colors.white,
                   isDense: false,
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   errorText: _contentError,
                 ),
               ),
+              const SizedBox(height: 16),
               MaterialButton(
                 onPressed: _addNote,
-                color: const Color(0xffffffff),
+                color: const Color(0xff6200EE),
                 elevation: 0,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.zero,
-                  side: BorderSide(color: Color(0xff808080), width: 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  side: const BorderSide(color: Colors.white, width: 1),
                 ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                textColor: const Color(0xff000000),
+                textColor: Colors.white,
                 height: 40,
                 minWidth: 140,
                 child: const Text(
                   "Ekle",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   ),
