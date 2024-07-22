@@ -39,7 +39,7 @@ class _ToDoListState extends State<ToDoList> {
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xff6200EE),
+        backgroundColor: const Color.fromARGB(255, 104, 0, 0),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
@@ -62,7 +62,7 @@ class _ToDoListState extends State<ToDoList> {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff6200EE)),
+                      color: Color.fromARGB(255, 104, 0, 0)),
                 ),
               ))
           : SizedBox(
@@ -147,7 +147,7 @@ class _ToDoListState extends State<ToDoList> {
                                       IconButton(
                                         icon: const Icon(
                                           Icons.edit,
-                                          color: Color(0xff6200EE),
+                                          color: Color.fromARGB(255, 104, 0, 0),
                                         ),
                                         onPressed: () {
                                           Navigator.push(
@@ -195,7 +195,7 @@ class _ToDoListState extends State<ToDoList> {
             ),
           );
         },
-        backgroundColor: const Color(0xff6200EE),
+        backgroundColor: const Color.fromARGB(255, 104, 0, 0),
         child: const Icon(
           Icons.add,
           color: Colors.white,

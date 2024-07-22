@@ -42,7 +42,7 @@ class _AddPageState extends State<TextChangeScreen> {
         elevation: 4,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xff6200EE),
+        backgroundColor: const Color.fromARGB(255, 104, 0, 0),
         title: const Text(
           "Not Ekle",
           style: TextStyle(
@@ -135,7 +135,7 @@ class _AddPageState extends State<TextChangeScreen> {
               const SizedBox(height: 16),
               MaterialButton(
                 onPressed: _addNote,
-                color: const Color(0xff6200EE),
+                color: Color.fromARGB(255, 104, 0, 0),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
