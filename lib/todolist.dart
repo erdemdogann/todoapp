@@ -165,7 +165,7 @@ class _ToDoListState extends State<ToDoList> {
                                       IconButton(
                                         icon: const Icon(
                                           Icons.delete,
-                                          color: Color(0xffE53935),
+                                          color: Color.fromARGB(255, 104, 0, 0),
                                         ),
                                         onPressed: () {
                                           _deleteNote(index);
